@@ -43,7 +43,7 @@ export class LoginService {
         `${googleTokenInfoUrl}?id_token=${idToken}`,
       );
       return response.data; // Contains user details like email, name, etc.
-    } catch (error) {
+    } catch (error: any) {
       throw new HttpException(
         `Failed to fetch Google user details: ${error.message}`,
         HttpStatus.UNAUTHORIZED,
@@ -61,7 +61,7 @@ export class LoginService {
         },
       });
       return response.data; // Contains user details like name, email, etc.
-    } catch (error) {
+    } catch (error: any) {
       throw new HttpException(
         'Failed to fetch Facebook user details',
         HttpStatus.UNAUTHORIZED,

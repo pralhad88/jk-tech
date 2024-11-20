@@ -1,4 +1,13 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+  "compilerOptions": {
+    "outDir": "./dist", // Ensure compiled files are output to the correct directory
+    "declaration": true, // Generates declaration files
+    "sourceMap": false, // Disable source maps for production builds
+    "removeComments": true, // Removes comments from output
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strict": true // Strict mode ensures better type safety
+  },
+  "exclude": ["node_modules", "test", "dist", "**/*.spec.ts"]
 }
