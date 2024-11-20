@@ -1,0 +1,18 @@
+{
+  "name": "blog-app-db-migration",
+  "version": "1.0.0",
+  "description": "JK Tech Test",
+  "main": "index.js",
+ "scripts": {
+    "db:migrate-up": "npx sequelize-cli db:migrate",
+    "db:migrate-down": "npx sequelize-cli db:migrate:undo",
+    "db:migrate-down-all": "npx sequelize-cli db:migrate:undo:all"
+  },
+  "author": "Pralhad Jadhav",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1",
+    "sequelize": "^6.37.5"
+  }
+}
