@@ -1,0 +1,95 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for the login form */
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding-top: 60px; /* Adjust to match the header height */
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; /* Set a fixed width for the box */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+}
+
+/* Header styling */
+.login-header {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Buttons container */
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Google login button styling */
+.google-login {
+    width: 100%;
+}
+
+/* Facebook login button styling */
+.facebook-login {
+    width: 100%;
+}
+
+#fb-login{
+    height: 40px;
+}
+
+/* Make the Google login button more styled and adjusted */
+.google-button {
+    background-color: #4285f4 !important;
+    /* Google's blue color */
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.google-button:hover {
+    background-color: #357ae8;
+}
+
+/* Make the Facebook login button styled */
+.facebook-button {
+    background-color: #3b5998 !important;
+    /* Facebook's blue color */
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.facebook-button:hover {
+    background-color: #2d4373;
+}

@@ -1,0 +1,87 @@
+/* Header.css */
+
+/* Fix the header at the top */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    z-index: 1000;
+    /* Ensure it's above other content */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    /* Align brand on the left and auth buttons on the right */
+    align-items: center;
+    /* Vertically align items */
+    
+}
+
+/* Style for the brand (app name) */
+.header .brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Style for the authentication buttons (login/logout) */
+.header .auth-container {
+    display: flex;
+    align-items: center;
+    margin-right: 2%;
+    color: black;
+}
+
+/* Style for the profile container when the user is logged in */
+.profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    background-color: #007bff;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px; /* Align below the profile icon */
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 150px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.profile-container:hover .dropdown {
+    display: block;
+}
+
+/* Style for login button */
+.login-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif; /* Optional: Set a default font */
+}
+
+.test {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  min-height: 100%; /* Occupy the full height */
+}
+
+/* Header wrapper */
+.test1 {
+  position: fixed; /* Fix the header at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure it's above other content */
+  background-color: #333; /* Optional: For consistent header background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Content wrapper */
+.test2 {
+  flex: 1; /* Take up the remaining height after the header */
+  overflow: auto; /* Allow scrolling if content exceeds the viewport height */
+  background-color: #f9f9f9; /* Optional: Background color for the content */
+}
+
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

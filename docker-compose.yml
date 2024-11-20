@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_service
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: jktechblog
+      POSTGRES_DB: jktechblog
+    ports:
+      - "5434:5432" # Map container's port 5432 to host's port 5434
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend_network
+
+  frontend:
+    build:
+      context: ./blog-app-frontend
+    ports:
+      - "3000:3000" # Map port 3000 of the container to port 3000 on the host
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./blog-app-frontend:/usr/src/app # Optional: for hot-reloading
+
+  backend:
+    build:
+      context: ./blog-app-backend
+    ports:
+      - "5000:5000" # Map port 8080 of the container to port 8080 on the host
+    environment:
+      - NODE_ENV=development
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=jktechblog
+      - DB_HOST=postgres # Hostname is the service name (postgres) in the network
+      - DB_PORT=5432
+      - DB_DIALECT=postgres
+      - DATABASE=jktechblog
+      - DB_SCHEMA=jk_blog
+      - DB_SSL=false
+      - JWT_SECRET='asjWe@dkf123SAD'
+    depends_on:
+      - postgres
+    networks:
+      - backend_network
+    volumes:
+      - ./blog-app-backend:/usr/src/app # Optional: for hot-reloading
+
+volumes:
+  postgres_data:
+
+networks:
+  backend_network:
