@@ -35,13 +35,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setIsAuthenticated(true);
 
       // Redirect only if not already on the dashboard
-      if (window.location.pathname === "/dashboard") {
+
+
+      if (window.location.pathname === "/" || window.location.pathname === "/login") {
         navigate("/dashboard");
       }
     } else {
       setIsAuthenticated(false);
       setUser(null);
-      if (window.location.pathname !== "/login") {
+
+      // Allow access to specific public routes like /viewblog/:id
+      const publicRoutes = ["/", "/login"];
+      const isPublicRoute = publicRoutes.some((route) =>
+        window.location.pathname.startsWith(route)
+      );
+      if (!isPublicRoute && !window.location.pathname.startsWith("/viewblog")) {
         navigate("/");
       }
     }

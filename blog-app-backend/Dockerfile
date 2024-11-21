@@ -12,14 +12,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Debug: List files in the application directory after copy
-RUN ls -l /usr/src/app
-
 # Build the application
 RUN npm run build
-
-# Debug: Check if "dist" folder is created
-RUN ls -l /usr/src/app/dist
 
 # Start the service using the production build
 CMD ["node", "dist/main.js"]

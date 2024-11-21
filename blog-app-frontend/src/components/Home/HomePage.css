@@ -123,3 +123,8 @@ h1 {
     cursor: pointer;
     font-size: 0.9rem;
   }
+
+  .more-details-btn {
+    background-color: #007bff;
+    color: white;
+  }

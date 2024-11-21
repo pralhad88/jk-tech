@@ -1,31 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../Home/HomePage.css'
-import { IBlogDetailsWithUser } from "../../interface/appInterface";
-import { getBlogsWithUserDetails } from "../../api/apiCalls";
+import { IBlogDetails } from "../../interface/appInterface";
+import { getBlogsForUser, deleteBlog } from "../../api/apiCalls";
 import { useAuth } from "../../context/AuthContext";
 
 const DashboardPage: React.FC = () => {
   const { authToken, logout } = useAuth();
   const navigate = useNavigate();
 
-  const [blogs, setBlogs] = useState<IBlogDetailsWithUser[]>([]);
+  const [blogs, setBlogs] = useState<IBlogDetails[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    // Replace this with an API call to fetch blogs
-    const fetchBlogs = async () => {
-      try {
-        const response = await getBlogsWithUserDetails(authToken, logout);
-        const data = response;
-        setBlogs(data);
-      } catch (error) {
-        console.error('Failed to fetch blogs', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Extract fetchBlogs function
+  const fetchBlogs = async () => {
+    setLoading(true);
+    try {
+      const response = await getBlogsForUser(authToken, logout);
+      setBlogs(response);
+    } catch (error) {
+      console.error("Failed to fetch blogs:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  const handleDeleteBlog = async (id: number) => {
+    const isDeleted: boolean = await deleteBlog(authToken, id, logout)
+    if (isDeleted) {
+      fetchBlogs();
+    }
+  }
+
+  useEffect(() => {
     fetchBlogs();
   }, []);
 
@@ -41,13 +48,16 @@ const DashboardPage: React.FC = () => {
           <div className="blog-header">
             <h2 className="blog-title">{blog.title}</h2>
             <div className="blog-author">
-                <img src={blog.user.profilePicture} alt={blog.user.name} className="profile-picture" />
+                <img src={blog.profilePicture} alt={blog.userName} className="profile-picture" />
             </div>
           </div>
-          <p className="blog-content">{blog.content}</p>
-
+          <div className="blog-content">
+            <p>{blog.content}</p>
+          </div>
           <div className="blog-footer">
-              <span className="author">Author: {blog.user.name}</span>
+              <div className='button-container'>
+                <button className='cancel-button' onClick={() => handleDeleteBlog(blog.id) }>Delete Blog</button>
+              </div>
             </div>
         </li>
       ))}

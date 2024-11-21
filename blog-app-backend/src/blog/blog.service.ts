@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Blog } from './blog.entity';
@@ -37,14 +37,39 @@ export class BlogService {
       },
     }));
   }
-
-  async findAllBlogsDetails(): Promise<BlogDetails[]> {
-    const data: BlogDetailsWithUser[] = await this.findAll();
+  
+  async findAllBlogsByUser(userId: number): Promise<BlogDetails[]> {
+    const data: BlogDetailsWithUser[] = await this.blogRepository.find({ where: { userId }, relations: ['user'] });
     return data.map((blog) => ({
       id: blog.id,
       title: blog.title,
       content: blog.content,
       userName: blog.user.name,
+      profilePicture: blog.user.profilePicture
     }));
   }
+
+  async findById(id: number): Promise<BlogDetailsWithUser> {
+    return await this.blogRepository.findOne({ where: { id }, relations: ['user'] });
+  }
+
+  async deleteBlogById(id: number, userId: number): Promise<{ message: string, id: number }> {
+    // Fetch the blog to ensure it exists and belongs to the user
+    const blog = await this.blogRepository.findOne({ where: { id } });
+
+    if (!blog) {
+      throw new NotFoundException('Blog not found');
+    }
+
+    if (blog.userId !== userId) {
+      throw new ForbiddenException('You are not authorized to delete this blog');
+    }
+
+    // Delete the blog
+    await this.blogRepository.remove(blog);
+    
+    return { message: 'Blog deleted successfully', id };
+  }
+
+  
 }

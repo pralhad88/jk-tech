@@ -39,18 +39,19 @@ const CreateBlog: React.FC = () => {
           <label htmlFor="content">Blog Content</label>
           <textarea
             id="content"
+            rows={10}
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Enter blog content"
             required
           />
         </div>
-        <div className='button'>
-        <button type="submit" className="submit-btn">
+        <div className='button-container'>
+        <button type="submit" className="submit-button">
           Create Blog
         </button>
 
-        <button className="cancel-btn" onClick={() => navigate('/dashboard')}>
+        <button className="cancel-button" onClick={() => navigate('/dashboard')}>
             Cancel
           </button>        
         </div>

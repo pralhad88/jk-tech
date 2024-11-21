@@ -24,22 +24,19 @@ const Header: React.FC = () => {
       <div className="brand">JK Tech Blog</div>
       <div className="auth-container">
         {isAuthenticated && user ? (
-          <div>
-          <button
-            onClick={() => navigate("/dashboard/create-blog")}
-            style={{marginRight:"20px", padding:"5px", cursor:"pointer"}}>
-            Create Blog</button>
-          <div
-            className="profile-container"
-            onMouseEnter={openDropdown}
-          >
-            <div
-
-              className="profile-icon"
-              title={user.name}
-            >
-              {getInitials(user.name)}
-            </div>
+          <div >
+            <button
+              onClick={() => navigate("/dashboard/create-blog")}
+              className="create-blog-btn"
+              >
+              Create Blog</button>
+            <div className="profile-container" onMouseEnter={openDropdown}>
+              <div
+                className="profile-icon"
+                title={user.name}
+              >
+                {getInitials(user.name)}
+              </div>
             {isDropdownOpen && (
               <div className="dropdown">
                 <span onClick={() => setIsDropdownOpen(false)} style={{display:"flex", justifyContent:"flex-end", cursor:"pointer"}}>X</span>
@@ -52,12 +49,14 @@ const Header: React.FC = () => {
           </div>
           </div>
         ) : (
-          <button
-            className="login-button"
-            onClick={() => navigate("/login")} // Redirect to login route
-          >
-            Login
+          <div className="button-container">
+            <button
+              className="login-button"
+              onClick={() => navigate("/login")} // Redirect to login route
+            >
+              Login
           </button>
+          </div>
         )}
       </div>
     </header>

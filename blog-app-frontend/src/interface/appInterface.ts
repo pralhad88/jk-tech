@@ -8,6 +8,7 @@ export interface IBlogDetails {
   title: string;
   content: string;
   userName: string;
+  profilePicture?: string
 }
 
 export interface LoginResponse {
