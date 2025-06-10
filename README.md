@@ -27,5 +27,4 @@ docker-compose build --no-cache
 docker-compose up
 ```
 
-4. Once all services is running up click on [App](http://localhost:3000) to access the web app.
-
+4. Once all services is running up click on [App](http://localhost:3000) to access the web App.
